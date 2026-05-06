@@ -4,7 +4,7 @@ import { BookOpen, FlaskConical, HeartPulse, Leaf, Microscope, Users } from 'luc
 export const site = {
   name: 'Bharat Ayurvedic Medical College',
   fullName: 'Bharat Ayurvedic Medical College, Hospital & Research Center',
-  shortName: 'BAMS CHRC',
+  shortName: 'BAMCHRC',
   logo: '/bams-logo.jpg',
   location: 'Muzaffarnagar, Uttar Pradesh',
   tagline: 'Classical Ayurveda, clinical confidence, and research-minded care.',
