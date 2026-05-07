@@ -1,19 +1,13 @@
 import { Link } from 'react-router-dom';
-import { FormEvent, lazy, Suspense, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Send } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { site } from '@/data/siteContent';
+import EmbeddedLeadForm from '@/components/ui/EmbeddedLeadForm';
 
 const HeroScene = lazy(() => import('@/components/three/HeroScene'));
 
 export default function HeroSection() {
-  const [sent, setSent] = useState(false);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSent(true);
-  };
-
   return (
     <section className="relative overflow-hidden bg-cream px-4 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
       <Suspense fallback={null}>
@@ -64,82 +58,7 @@ export default function HeroSection() {
               Share your details and our team can help with eligibility, programs, and the admission process.
             </p>
           </div>
-
-          <form className="grid gap-4" onSubmit={handleSubmit} aria-label="Hero enquiry form">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-semibold text-ink">
-                Full name
-                <input
-                  className="min-h-12 rounded-xl border border-stone-300 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-stone-400 focus:border-primary"
-                  name="name"
-                  placeholder="Your full name"
-                  required
-                />
-              </label>
-              <label className="grid gap-2 text-sm font-semibold text-ink">
-                Phone number
-                <input
-                  className="min-h-12 rounded-xl border border-stone-300 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-stone-400 focus:border-primary"
-                  name="phone"
-                  placeholder="Your phone number"
-                  required
-                />
-              </label>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-semibold text-ink">
-                Email
-                <input
-                  className="min-h-12 rounded-xl border border-stone-300 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-stone-400 focus:border-primary"
-                  type="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </label>
-              <label className="grid gap-2 text-sm font-semibold text-ink">
-                Program interest
-                <select
-                  className="min-h-12 rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-ink outline-none transition focus:border-primary"
-                  name="program"
-                  defaultValue=""
-                  required
-                >
-                  <option value="" disabled>
-                    Select a program
-                  </option>
-                  <option value="bams">BAMS</option>
-                  <option value="hospital-training">Hospital Training</option>
-                  <option value="research">Research Opportunities</option>
-                </select>
-              </label>
-            </div>
-
-            <label className="grid gap-2 text-sm font-semibold text-ink">
-              Message
-              <textarea
-                className="min-h-28 rounded-xl border border-stone-300 px-4 py-3 text-sm text-ink outline-none transition placeholder:text-stone-400 focus:border-primary"
-                name="message"
-                placeholder="Tell us what you'd like to know"
-                required
-              />
-            </label>
-
-            <button
-              type="submit"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 font-bold text-white transition hover:bg-secondary"
-            >
-              <Send size={18} aria-hidden="true" />
-              Send enquiry
-            </button>
-
-            {sent ? (
-              <p className="rounded-xl bg-green-50 px-4 py-3 text-sm font-semibold text-accent" role="status">
-                Thanks. This enquiry form is ready for API integration.
-              </p>
-            ) : null}
-          </form>
+          <EmbeddedLeadForm containerId="formsID7375" className="grid gap-4" />
         </motion.div>
       </div>
     </section>

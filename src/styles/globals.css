@@ -51,3 +51,50 @@ textarea:focus-visible {
 .text-balance {
   text-wrap: balance;
 }
+
+#formsID7375,
+#formsID7375-contact {
+  width: 100%;
+}
+
+#formsID7375 :is(input, select, textarea),
+#formsID7375-contact :is(input, select, textarea) {
+  width: 100%;
+  border: 1px solid rgb(231 229 228);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--color-ink);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+#formsID7375 :is(input, select, textarea):focus,
+#formsID7375-contact :is(input, select, textarea):focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgb(216 67 21 / 0.15);
+  outline: none;
+}
+
+#formsID7375 button,
+#formsID7375-contact button {
+  border: 0;
+  border-radius: 0.75rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#formsID7375 button:hover,
+#formsID7375-contact button:hover {
+  background: var(--color-secondary);
+}
+
+#formsID7375 :is(label, p, span),
+#formsID7375-contact :is(label, p, span) {
+  color: var(--color-ink);
+}

@@ -125,6 +125,36 @@ const createHighriseCluster = (center: [number, number]) => {
   buildings.push(createExtrusionPolygon(center, 135, -55, 40, 38, 82, 4));
   buildings.push(createExtrusionPolygon(center, 105, 95, 38, 36, 74, 2));
 
+  const additionalHighrises = [
+    { east: -168, north: 68, width: 40, depth: 36, height: 126, base: 8, roof: true },
+    { east: -146, north: -95, width: 36, depth: 34, height: 114, base: 6, roof: true },
+    { east: 162, north: 84, width: 38, depth: 36, height: 122, base: 8, roof: true },
+    { east: 152, north: -98, width: 40, depth: 38, height: 136, base: 10, roof: true },
+    { east: -4, north: 142, width: 34, depth: 32, height: 108, base: 6, roof: true },
+    { east: 12, north: -148, width: 36, depth: 34, height: 118, base: 8, roof: true },
+    { east: -108, north: 146, width: 32, depth: 30, height: 96, base: 4, roof: false },
+    { east: 112, north: 152, width: 34, depth: 32, height: 102, base: 6, roof: true },
+    { east: -118, north: -152, width: 36, depth: 34, height: 112, base: 6, roof: true },
+    { east: 122, north: -156, width: 34, depth: 30, height: 98, base: 5, roof: false },
+    { east: 0, north: 182, width: 30, depth: 28, height: 88, base: 4, roof: false },
+    { east: 0, north: -182, width: 30, depth: 28, height: 92, base: 4, roof: false },
+  ];
+
+  additionalHighrises.forEach((tower) => {
+    buildings.push(
+      ...createDetailedBuilding(
+        center,
+        tower.east,
+        tower.north,
+        tower.width,
+        tower.depth,
+        tower.height,
+        tower.base,
+        tower.roof,
+      ),
+    );
+  });
+
   return {
     type: 'FeatureCollection' as const,
     features: buildings.flat(),
@@ -149,6 +179,20 @@ const createCityBlocks = (center: [number, number]) => {
     { east: -40, north: -195, width: 110, depth: 80, heightRange: [22, 36] },
     { east: 50, north: -195, width: 110, depth: 80, heightRange: [26, 40] },
     { east: 140, north: -195, width: 85, depth: 80, heightRange: [18, 28] },
+    { east: 245, north: 155, width: 70, depth: 62, heightRange: [18, 28] },
+    { east: 245, north: 70, width: 72, depth: 64, heightRange: [20, 30] },
+    { east: 245, north: -20, width: 70, depth: 64, heightRange: [16, 26] },
+    { east: 245, north: -110, width: 74, depth: 68, heightRange: [18, 28] },
+    { east: -250, north: 150, width: 72, depth: 64, heightRange: [16, 26] },
+    { east: -250, north: 60, width: 74, depth: 66, heightRange: [18, 30] },
+    { east: -250, north: -30, width: 72, depth: 64, heightRange: [20, 32] },
+    { east: -250, north: -120, width: 70, depth: 62, heightRange: [16, 26] },
+    { east: -10, north: 255, width: 92, depth: 66, heightRange: [20, 32] },
+    { east: 95, north: 255, width: 90, depth: 66, heightRange: [18, 30] },
+    { east: -110, north: 255, width: 88, depth: 66, heightRange: [16, 28] },
+    { east: -5, north: -255, width: 92, depth: 66, heightRange: [20, 34] },
+    { east: 100, north: -255, width: 90, depth: 66, heightRange: [22, 36] },
+    { east: -112, north: -255, width: 88, depth: 66, heightRange: [18, 30] },
   ];
 
   blockPositions.forEach((pos) => {
@@ -158,12 +202,16 @@ const createCityBlocks = (center: [number, number]) => {
   });
 
   const residentialClusters = [
-    { east: -145, north: 165, width: 45, depth: 40, count: 4 },
-    { east: 155, north: 165, width: 48, depth: 42, count: 4 },
-    { east: -160, north: -165, width: 52, depth: 46, count: 4 },
-    { east: 165, north: -170, width: 48, depth: 44, count: 4 },
-    { east: -85, north: 175, width: 55, depth: 50, count: 3 },
-    { east: 90, north: 178, width: 52, depth: 48, count: 3 },
+    { east: -145, north: 165, width: 45, depth: 40, count: 6 },
+    { east: 155, north: 165, width: 48, depth: 42, count: 6 },
+    { east: -160, north: -165, width: 52, depth: 46, count: 6 },
+    { east: 165, north: -170, width: 48, depth: 44, count: 6 },
+    { east: -85, north: 175, width: 55, depth: 50, count: 5 },
+    { east: 90, north: 178, width: 52, depth: 48, count: 5 },
+    { east: -205, north: 12, width: 52, depth: 48, count: 5 },
+    { east: 210, north: 8, width: 50, depth: 46, count: 5 },
+    { east: -18, north: 220, width: 58, depth: 52, count: 4 },
+    { east: 18, north: -220, width: 58, depth: 52, count: 4 },
   ];
 
   residentialClusters.forEach((cluster) => {
@@ -225,11 +273,11 @@ const add3dBuildings = (map: maplibregl.Map, center: [number, number]) => {
             ['linear'],
             ['zoom'],
             12,
-            'rgba(86, 96, 116, 0.65)',
+            'rgba(120, 76, 54, 0.62)',
             14,
-            'rgba(51, 61, 81, 0.85)',
+            'rgba(86, 55, 40, 0.8)',
             16,
-            'rgba(31, 41, 55, 0.96)',
+            'rgba(58, 42, 36, 0.92)',
           ],
           'fill-extrusion-height': [
             'interpolate',
@@ -276,13 +324,13 @@ const add3dBuildings = (map: maplibregl.Map, center: [number, number]) => {
             ['linear'],
             ['get', 'height'],
             40,
-            'rgba(146, 165, 188, 0.88)',
+            'rgba(214, 121, 84, 0.84)',
             80,
-            'rgba(176, 195, 215, 0.92)',
+            'rgba(225, 136, 84, 0.88)',
             120,
-            'rgba(196, 215, 235, 0.96)',
+            'rgba(237, 156, 86, 0.92)',
             160,
-            'rgba(216, 235, 255, 0.98)',
+            'rgba(248, 176, 108, 0.94)',
           ],
           'fill-extrusion-height': [
             'interpolate',
@@ -322,7 +370,7 @@ const add3dBuildings = (map: maplibregl.Map, center: [number, number]) => {
         source: DETAILED_BUILDINGS_SOURCE_ID,
         minzoom: 13,
         paint: {
-          'fill-extrusion-color': 'rgba(126, 145, 168, 0.86)',
+          'fill-extrusion-color': 'rgba(195, 108, 76, 0.84)',
           'fill-extrusion-height': ['get', 'height'],
           'fill-extrusion-base': ['get', 'min_height'],
           'fill-extrusion-opacity': 0.9,
@@ -354,13 +402,13 @@ const add3dBuildings = (map: maplibregl.Map, center: [number, number]) => {
             ['linear'],
             ['get', 'height'],
             10,
-            'rgba(96, 106, 126, 0.78)',
+            'rgba(158, 105, 76, 0.72)',
             20,
-            'rgba(86, 96, 116, 0.82)',
+            'rgba(142, 92, 66, 0.76)',
             30,
-            'rgba(76, 86, 106, 0.86)',
+            'rgba(128, 82, 60, 0.82)',
             40,
-            'rgba(66, 76, 96, 0.9)',
+            'rgba(114, 72, 52, 0.86)',
           ],
           'fill-extrusion-height': ['get', 'height'],
           'fill-extrusion-base': ['get', 'min_height'],
@@ -413,14 +461,14 @@ export default function Map({
 
         .maplibre-office-popup .maplibregl-popup-content {
           border-radius: 16px;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          background: rgba(7, 10, 13, 0.92);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.24);
+          border: 1px solid rgba(216, 67, 21, 0.26);
+          background: rgba(35, 31, 32, 0.95);
+          box-shadow: 0 20px 40px rgba(35, 31, 32, 0.28);
           padding: 10px 12px;
         }
 
         .maplibre-office-popup .maplibregl-popup-tip {
-          border-top-color: rgba(7, 10, 13, 0.92);
+          border-top-color: rgba(35, 31, 32, 0.95);
         }
       `;
       document.head.appendChild(style);
@@ -430,14 +478,14 @@ export default function Map({
     markerElement.className = 'maplibre-office-marker';
     markerElement.innerHTML = `
       <div style="position:relative;display:flex;align-items:center;justify-content:center;width:20px;height:20px;">
-        <span style="position:absolute;inset:0;border-radius:9999px;background:rgba(196,255,59,0.28);animation:map-marker-pulse 2.1s ease-out infinite;"></span>
-        <span style="position:relative;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:9999px;background:#c4ff3b;border:2px solid rgba(0,0,0,0.28);box-shadow:0 0 20px rgba(196,255,59,0.32);"></span>
+        <span style="position:absolute;inset:0;border-radius:9999px;background:rgba(216,67,21,0.3);animation:map-marker-pulse 2.1s ease-out infinite;"></span>
+        <span style="position:relative;display:flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:9999px;background:#d84315;border:2px solid rgba(255,247,232,0.72);box-shadow:0 0 20px rgba(216,67,21,0.35);"></span>
       </div>
     `;
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/dark',
+      style: 'https://tiles.openfreemap.org/styles/liberty',
       center: center as LngLatLike,
       zoom,
       pitch: 58,
@@ -464,7 +512,7 @@ export default function Map({
           className: 'maplibre-office-popup',
         }).setHTML(
           `<div style="padding:2px 2px 0;">
-            <p style="margin:0;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(196,255,59,0.82);font-weight:700;">Office</p>
+            <p style="margin:0;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(245,124,0,0.92);font-weight:700;">Campus</p>
             <p style="margin:6px 0 0;font-size:14px;font-weight:600;color:#ffffff;">${title}</p>
           </div>`,
         ),
@@ -514,27 +562,27 @@ export default function Map({
 
   return (
     <div className={`relative overflow-hidden rounded-[1.75rem] border border-white/10 ${className}`}>
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b from-black/30 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-linear-to-t from-black/40 via-black/20 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-24 bg-linear-to-b from-cream/55 via-cream/20 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-linear-to-t from-ink/55 via-ink/20 to-transparent" />
       <div ref={mapContainer} className="h-full w-full" />
 
-      <div className="pointer-events-none absolute left-4 top-4 z-20 max-w-[75%] rounded-2xl border border-white/10 bg-black/50 px-4 py-3 backdrop-blur-md">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80">Office Location</p>
-        <p className="mt-1 text-sm font-medium text-white sm:text-base">{title}</p>
-        <p className="mt-1 text-xs leading-relaxed text-stone-200 sm:text-sm">{address}</p>
+      <div className="pointer-events-none absolute left-4 top-4 z-20 max-w-[75%] rounded-2xl border border-orange-200/70 bg-cream/90 px-4 py-3 backdrop-blur-md">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">Campus Location</p>
+        <p className="mt-1 text-sm font-semibold text-ink sm:text-base">{title}</p>
+        <p className="mt-1 text-xs leading-relaxed text-stone-700 sm:text-sm">{address}</p>
       </div>
 
       <a
         href={finalLocationUrl}
         target="_blank"
         rel="noreferrer"
-        className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-transform duration-300 hover:scale-[1.02]"
+        className="absolute bottom-4 right-4 z-20 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-transform duration-300 hover:scale-[1.02] hover:bg-secondary"
       >
         Open Location
         <ExternalLink className="h-3.5 w-3.5" />
       </a>
 
-      <div className="pointer-events-none absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/50 px-3 py-2 text-[11px] font-medium text-stone-100 backdrop-blur-md">
+      <div className="pointer-events-none absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 rounded-full border border-orange-200/70 bg-cream/90 px-3 py-2 text-[11px] font-medium text-ink backdrop-blur-md">
         <MapPin className="h-3.5 w-3.5 text-primary" />
         Navigation ready
       </div>

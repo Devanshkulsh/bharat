@@ -5,7 +5,7 @@ export const site = {
   name: 'Bharat Ayurvedic Medical College',
   fullName: 'Bharat Ayurvedic Medical College, Hospital & Research Center',
   shortName: 'BAMCHRC',
-  logo: '/bams-logo.jpg',
+  logo: '/logo.png',
   location: 'Muzaffarnagar, Uttar Pradesh',
   tagline: 'Classical Ayurveda, clinical confidence, and research-minded care.',
 };

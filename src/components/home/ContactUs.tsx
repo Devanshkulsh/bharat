@@ -1,7 +1,9 @@
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
-import { MapPin, Phone, Mail, Send } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import SectionHeading from '../ui/SectionHeading';
+import Map from '../ui/Map';
+import EmbeddedLeadForm from '../ui/EmbeddedLeadForm';
 
 const contactDetails = [
   {
@@ -35,10 +37,6 @@ const fadeUp: Variants = {
 };
 
 export default function ContactUs() {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
   return (
     <section className="bg-white px-4 py-16 sm:px-8 sm:py-24 lg:px-12 relative overflow-hidden">
       <div className="mx-auto w-full max-w-7xl">
@@ -85,31 +83,7 @@ export default function ContactUs() {
             <motion.div variants={fadeUp} className="rounded-3xl border border-stone-100 bg-white p-6 shadow-sm sm:p-8">
               <h4 className="text-xl font-bold text-ink">Send a Message</h4>
               <p className="mt-2 text-sm text-stone-600">Fill out the form below and we'll get back to you within 24 hours.</p>
-              
-              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-1">
-                    <label htmlFor="name" className="text-xs font-bold text-stone-700">Full Name <span className="text-primary">*</span></label>
-                    <input type="text" id="name" required className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-ink placeholder:text-stone-400 focus:border-primary focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary transition-colors" placeholder="John Doe" />
-                  </div>
-                  <div className="space-y-1">
-                    <label htmlFor="phone" className="text-xs font-bold text-stone-700">Phone Number <span className="text-primary">*</span></label>
-                    <input type="tel" id="phone" required className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-ink placeholder:text-stone-400 focus:border-primary focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary transition-colors" placeholder="+91 90000 00000" />
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <label htmlFor="email" className="text-xs font-bold text-stone-700">Email Address</label>
-                  <input type="email" id="email" className="w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-ink placeholder:text-stone-400 focus:border-primary focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary transition-colors" placeholder="johndoe@example.com" />
-                </div>
-                <div className="space-y-1">
-                  <label htmlFor="message" className="text-xs font-bold text-stone-700">Your Inquiry <span className="text-primary">*</span></label>
-                  <textarea id="message" required rows={4} className="w-full resize-none rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-ink placeholder:text-stone-400 focus:border-primary focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary transition-colors" placeholder="How can we help you?" />
-                </div>
-                <button type="submit" className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 text-sm font-bold text-white transition-all hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                  Submit Inquiry
-                  <Send className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
-              </form>
+              <EmbeddedLeadForm containerId="formsID7375-contact" mirrorFromId="formsID7375" className="mt-6 space-y-4" />
             </motion.div>
           </motion.div>
 
@@ -121,18 +95,14 @@ export default function ContactUs() {
             transition={{ duration: 0.7 }}
             className="relative flex h-125 flex-col lg:col-span-7 lg:h-auto"
           >
-            {/* Embedded Map */}
-            <div className="relative h-full w-full overflow-hidden rounded-4xl shadow-[0_18px_55px_rgb(35_31_32/0.08)] bg-stone-100">
-              {/* Using a standard generic Google Maps embed focused on Muzaffarnagar */}
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3470.852244098141!2d77.74779631251684!3d29.549796975072848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390c02d3e3ee6929%3A0xf2e43a61a9fe9eb9!2sBharat%20Ayurved%20Medical%20College%20%26%20Hospital%20Research%20Centre!5e0!3m2!1sen!2sin!4v1778068776890!5m2!1sen!2sin" 
-                className="absolute inset-0 h-full w-full border-0 filter grayscale-[0.2] contrast-[1.05]"
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="College Location Map"
-              />
-            </div>
+            <Map
+              center={[77.747796, 29.549797]}
+              zoom={14.2}
+              title="Bharat Ayurvedic Medical College"
+              address="10 KM. Mile Stone, Roorkee Rd, Muzaffarnagar, Uttar Pradesh 251307"
+              locationUrl="https://maps.app.goo.gl/si6zhrzdBXqNSdbc6"
+              className="h-full w-full rounded-4xl border-orange-100 shadow-[0_18px_55px_rgb(35_31_32/0.08)]"
+            />
           </motion.div>
 
         </div>
