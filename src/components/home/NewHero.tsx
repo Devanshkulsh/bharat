@@ -212,6 +212,9 @@ export default function HomeHero() {
                 <X className="h-5 w-5" />
               </button>
             </div>
+            <p className="border-b border-stone-100 px-4 py-2 text-xs text-stone-600 sm:px-6 sm:text-sm">
+              If the form does not appear, please reload the page.
+            </p>
             <div
               id={APPLICATION_FORM_DIV_ID}
               className="h-full w-full overflow-y-auto p-2 sm:p-4"
