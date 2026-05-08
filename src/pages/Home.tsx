@@ -22,6 +22,7 @@ export default function Home() {
       {/* <NewHero /> */}
       <NewHero2 />
 
+      {/* About Section */}
       <SectionWrapper
         eyebrow="About us"
         title="An Ayurveda institution built around learning, care, and clinical discipline"
