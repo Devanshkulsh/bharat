@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Leaf, X } from 'lucide-react';
+import { ArrowRight, Leaf } from 'lucide-react';
 
 const APPLICATION_FORM_DIV_ID = 'formsID7375';
 
@@ -17,31 +16,9 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' as const } },
 };
 
-export default function NewHero() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
-  useEffect(() => {
-    if (!isFormOpen) return;
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsFormOpen(false);
-    };
-
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [isFormOpen]);
-
-  const openFormModal = () => setIsFormOpen(true);
-  const closeFormModal = () => setIsFormOpen(false);
-
+export default function NewHero2() {
   return (
-    <>
-      <section className="relative overflow-hidden bg-cream pt-6 pb-16 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-32">
+    <section className="relative overflow-hidden bg-cream pt-6 pb-16 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-32">
         {/* Ambient background glows for added depth */}
         <div className="absolute -left-40 top-20 h-125 w-125 rounded-full bg-orange-200/30 blur-[100px] pointer-events-none" />
 
@@ -92,14 +69,13 @@ export default function NewHero() {
                   variants={fadeUp}
                   className="mt-8 flex w-full flex-col sm:w-auto sm:flex-row sm:items-center gap-4"
                 >
-                  <button
-                    type="button"
-                    onClick={openFormModal}
+                  <a
+                    href={`#${APPLICATION_FORM_DIV_ID}`}
                     className="group flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all hover:-translate-y-1 hover:bg-secondary hover:shadow-xl hover:shadow-secondary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
                   >
                     Application form
                     <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </button>
+                  </a>
                 </motion.div>
 
                 <motion.div
@@ -124,7 +100,7 @@ export default function NewHero() {
               </div>
             </motion.div>
 
-            {/* 2. Featured Image (Ordered 2nd on mobile, sits in right column on desktop) */}
+            {/* 2. Form Panel (Right column) */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -132,14 +108,9 @@ export default function NewHero() {
               className="order-2 relative w-full lg:mt-0"
             >
               <div className="relative z-10 lg:pr-12 xl:pr-16">
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_18px_55px_rgb(35_31_32/0.15)] lg:rounded-3xl">
-                  <img
-                    src="/college-building.webp"
-                    alt="Students collaborating and studying together on campus"
-                    className="aspect-4/3 w-full object-cover transition-transform duration-1000 hover:scale-105"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl lg:rounded-3xl pointer-events-none" />
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[0_18px_55px_rgb(35_31_32/0.15)] lg:rounded-3xl">
+                  <div id={APPLICATION_FORM_DIV_ID} className="min-h-[40rem] w-full overflow-y-auto p-4 sm:p-6" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl lg:rounded-3xl pointer-events-none" />
                 </div>
               </div>
             </motion.div>
@@ -151,18 +122,6 @@ export default function NewHero() {
               animate="show"
               className="order-3 flex flex-col items-start w-full pb-16 lg:hidden"
             >
-              {/* Application Form Button - Fixed to bottom in a transparent strip on Mobile */}
-              <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/50 bg-white/80 p-4 pb-6 backdrop-blur-md lg:hidden">
-                <button
-                  type="button"
-                  onClick={openFormModal}
-                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                >
-                  Application form
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </button>
-              </div>
-
               <motion.div
                 variants={fadeUp}
                 className="mt-4 flex flex-row gap-4 text-sm font-bold text-stone-600 sm:flex-row sm:gap-8 sm:text-base"
@@ -186,40 +145,5 @@ export default function NewHero() {
           </div>
         </div>
       </section>
-
-      {isFormOpen ? (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 p-3 sm:p-6"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Application form modal"
-          onClick={closeFormModal}
-        >
-          <div
-            className="relative flex h-[88vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:h-[90vh] sm:rounded-3xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-stone-200 px-4 py-3 sm:px-6">
-              <p className="text-sm font-bold text-ink sm:text-base">Application Form</p>
-              <button
-                type="button"
-                onClick={closeFormModal}
-                className="rounded-lg p-2 text-stone-500 transition-colors hover:bg-stone-100 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                aria-label="Close application form"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <p className="border-b border-stone-100 px-4 py-2 text-xs text-stone-600 sm:px-6 sm:text-sm">
-              If the form does not appear, please reload the page.
-            </p>
-            <div
-              id={APPLICATION_FORM_DIV_ID}
-              className="h-full w-full overflow-y-auto p-2 sm:p-4"
-            />
-          </div>
-        </div>
-      ) : null}
-    </>
   );
 }

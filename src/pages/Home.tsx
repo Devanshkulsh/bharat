@@ -12,13 +12,15 @@ import VideoTestimonials from '@/components/home/VideoTestimonials';
 import CampusGallery from '@/components/home/CampusGallery';
 import HospitalHome from '@/components/home/HospitalHome';
 import ContactUs from '@/components/home/ContactUs';
-import NewHero from '@/components/home/NewHero';
+// import NewHero from '@/components/home/NewHero';
+import NewHero2 from '@/components/home/NewHero2';
 
 export default function Home() {
   return (
     <AnimatedPageWrapper>
       {/* <HeroSection /> */}
-      <NewHero />
+      {/* <NewHero /> */}
+      <NewHero2 />
 
       <SectionWrapper
         eyebrow="About us"
