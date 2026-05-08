@@ -54,7 +54,10 @@ export default function Navbar() {
               </NavLink>
 
               {item.children?.length ? (
-                <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 translate-y-4 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                /* Updated to w-max with min/max bounds so all dropdowns dynamically adapt
+                  to their content perfectly without awkward text wrapping or excess whitespace.
+                */
+                <div className="invisible absolute left-1/2 top-full z-50 w-max min-w-[240px] max-w-sm -translate-x-1/2 translate-y-4 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {/* Invisible hover bridge to prevent menu closing when moving mouse */}
                   <div className="absolute -top-3 left-0 right-0 h-6 bg-transparent" />
                   
@@ -64,10 +67,14 @@ export default function Navbar() {
                     <div className="absolute left-0 right-0 top-0 h-1 bg-linear-to-r from-primary to-accent opacity-80" />
                     
                     <div className="mt-1 flex flex-col gap-1">
-                      {item.children.map((child) => (
-                        <NavLink key={child.href} className={desktopDropdownClass} to={child.href}>
+                      {item.children.map((child, childIndex) => (
+                        <NavLink
+                          key={`${item.href}-${child.label}-${childIndex}`}
+                          className={desktopDropdownClass}
+                          to={child.href || '#'}
+                        >
                           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-200 transition-colors group-hover/link:bg-primary" />
-                          <span className="min-w-0 whitespace-normal break-words transition-transform group-hover/link:translate-x-1">{child.label}</span>
+                          <span className="min-w-0 flex-1 whitespace-normal break-words transition-transform group-hover/link:translate-x-1">{child.label}</span>
                         </NavLink>
                       ))}
                     </div>
@@ -140,12 +147,12 @@ export default function Navbar() {
                 </div>
 
                 {item.children?.length && openMobileSubmenu === item.href ? (
-                  <div className="mb-2 mt-1 flex flex-col gap-1 px-4">
-                    {item.children.map((child) => (
+                  <div className="grid gap-1 px-2 pb-2 pt-1">
+                    {item.children.map((child, childIndex) => (
                       <NavLink
-                        key={child.href}
+                        key={`${item.href}-${child.label}-${childIndex}`}
                         className={mobileDropdownClass}
-                        to={child.href}
+                        to={child.href || '#'}
                         onClick={closeMobileMenu}
                       >
                         {child.label}
