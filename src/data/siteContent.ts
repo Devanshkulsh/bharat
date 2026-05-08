@@ -12,14 +12,49 @@ export const site = {
 
 export const navItems = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Programs', href: '/programs' },
+  {
+    label: 'About',
+    href: '/about',
+    children: [
+      { label: 'About Profile', href: '' },
+      { label: 'Goals & Objectives', href: '' },
+      { label: 'Vison & Mission', href: '' },
+      { label: 'Secretary Message', href: '' },
+      { label: 'Principal Message', href: '' },
+      { label: 'About BAMS', href: '' },
+      { label: 'College Council', href: '' },
+    ],
+  },
+  {
+    label: 'NCISM Mandates',
+    href: '/ncism-mandates',
+    children: [
+      { label: 'Director/Dean/Principal/Medical Superintedentent', href: '' },
+      { label: 'Staff', href: '' },
+      { label: 'Intake Capacity', href: '' },
+      { label: 'Students List', href: '' },
+      { label: 'Research Publications & Activities', href: '' },
+      { label: 'CME/Seminar/Webinar & Other Academic Activities', href: '' },
+      { label: 'Awards & Achievement', href: '' },
+      { label: 'Details of Affiliated University', href: '' },
+      { label: 'Result', href: '' },
+      { label: 'Status of Recognition', href: '' },
+      { label: 'Clinical Material in Hospital', href: '' },
+      { label: 'Important Website Link', href: '' },
+      { label: 'Monthly Analysis Attendance', href: '' },
+      { label: 'Current Time Table', href: '' },
+    ],
+  },
+  {
+    label: 'Campus',
+    href: '/facilities',
+    children: [
+      { label: 'Facilities', href: '/facilities' },
+      { label: 'Gallery', href: '/gallery' },
+    ],
+  },
   { label: 'Hospital', href: '/hospital' },
-  { label: 'Research', href: '/research' },
-  { label: 'Admissions', href: '/admissions' },
-  { label: 'Gallery', href: '/gallery' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Alumni', href: '/alumni' },
 ];
 
 export const highlights: Array<{

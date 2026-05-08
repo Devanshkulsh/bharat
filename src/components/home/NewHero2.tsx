@@ -108,7 +108,7 @@ export default function NewHero2() {
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[0_18px_55px_rgb(35_31_32/0.15)] lg:rounded-3xl">
                 <div
                   id={APPLICATION_FORM_DIV_ID}
-                  className="min-h-[40rem] w-full overflow-y-auto p-4 sm:p-6"
+                  className="min-h-160 w-full overflow-y-auto p-4 sm:p-6"
                 />
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl lg:rounded-3xl pointer-events-none" />
               </div>

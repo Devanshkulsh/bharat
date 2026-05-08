@@ -107,7 +107,7 @@ export default function Footer() {
           © {new Date().getFullYear()} {site.fullName}. All rights reserved.
         </p>
         <p className="text-sm text-stone-400">
-          Developed & maintained by{' '}
+          Developed & Maintained by{' '}
           <a
             href="https://ntechzy.in"
             target="_blank"
