@@ -54,7 +54,7 @@ export default function Navbar() {
               </NavLink>
 
               {item.children?.length ? (
-                <div className="invisible absolute left-1/2 top-full z-50 w-60 -translate-x-1/2 translate-y-4 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 translate-y-4 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {/* Invisible hover bridge to prevent menu closing when moving mouse */}
                   <div className="absolute -top-3 left-0 right-0 h-6 bg-transparent" />
                   
@@ -66,8 +66,8 @@ export default function Navbar() {
                     <div className="mt-1 flex flex-col gap-1">
                       {item.children.map((child) => (
                         <NavLink key={child.href} className={desktopDropdownClass} to={child.href}>
-                          <span className="h-1.5 w-1.5 rounded-full bg-orange-200 transition-colors group-hover/link:bg-primary" />
-                          <span className="transition-transform group-hover/link:translate-x-1">{child.label}</span>
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-200 transition-colors group-hover/link:bg-primary" />
+                          <span className="min-w-0 whitespace-normal break-words transition-transform group-hover/link:translate-x-1">{child.label}</span>
                         </NavLink>
                       ))}
                     </div>
