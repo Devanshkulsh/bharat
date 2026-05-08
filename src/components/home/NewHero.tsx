@@ -41,7 +41,7 @@ export default function HomeHero() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-cream pt-12 pb-16 sm:pt-20 sm:pb-24 lg:py-32">
+      <section className="relative overflow-hidden bg-cream pt-6 pb-16 sm:pt-12 sm:pb-24 lg:pt-16 lg:pb-32">
         {/* Ambient background glows for added depth */}
         <div className="absolute -left-40 top-20 h-125 w-125 rounded-full bg-orange-200/30 blur-[100px] pointer-events-none" />
 
@@ -59,7 +59,7 @@ export default function HomeHero() {
               variants={staggerContainer}
               initial="hidden"
               animate="show"
-              className="order-1 flex flex-col items-start pt-4 lg:py-10"
+              className="order-1 flex flex-col items-start pt-0 lg:pt-0 lg:pb-10"
             >
               <motion.div
                 variants={fadeUp}
@@ -149,25 +149,23 @@ export default function HomeHero() {
               variants={staggerContainer}
               initial="hidden"
               animate="show"
-              className="order-3 flex flex-col items-start w-full lg:hidden"
+              className="order-3 flex flex-col items-start w-full pb-16 lg:hidden"
             >
-              <motion.div
-                variants={fadeUp}
-                className="flex w-full flex-col sm:w-auto sm:flex-row sm:items-center gap-4"
-              >
+              {/* Application Form Button - Fixed to bottom in a transparent strip on Mobile */}
+              <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/50 bg-white/80 p-4 pb-6 backdrop-blur-md lg:hidden">
                 <button
                   type="button"
                   onClick={openFormModal}
-                  className="group flex w-full sm:w-auto items-center justify-center gap-3 rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+                  className="group flex w-full items-center justify-center gap-3 rounded-xl bg-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-primary/20 transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                 >
                   Application form
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </button>
-              </motion.div>
+              </div>
 
               <motion.div
                 variants={fadeUp}
-                className="mt-8 flex flex-row gap-4 text-sm font-bold text-stone-600 sm:flex-row sm:gap-8 sm:text-base"
+                className="mt-4 flex flex-row gap-4 text-sm font-bold text-stone-600 sm:flex-row sm:gap-8 sm:text-base"
               >
                 <a
                   href="#courses"
