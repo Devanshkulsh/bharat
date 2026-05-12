@@ -43,7 +43,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-linear-to-br from-ink/95 via-ink/85 to-ink/60" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl overflow-x-clip px-4 pb-12 pt-8 sm:px-6 md:py-20 lg:px-8 lg:py-24">
+      <div className="relative z-10 mx-auto max-w-7xl overflow-x-clip px-4 pb-12 pt-8 sm:px-6 md:py-20 lg:px-8 lg:py-18">
         <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-16">
           {/* Content Side */}
           <motion.div
