@@ -27,12 +27,22 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 button,
@@ -55,6 +65,13 @@ textarea:focus-visible {
 #formsID7375,
 #formsID7375-contact {
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#formsID7375 *,
+#formsID7375-contact * {
+  max-width: 100%;
 }
 
 #formsID7375 :is(input, select, textarea),

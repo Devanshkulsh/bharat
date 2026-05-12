@@ -39,17 +39,12 @@ export default function HeroSection() {
     <section className="relative w-full overflow-x-hidden bg-cream">
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/hero.webp"
-          alt=""
-          className="h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-ink/95 via-ink/85 to-ink/60" />
+        <img src="/hero.webp" alt="" className="h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-linear-to-br from-ink/95 via-ink/85 to-ink/60" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl overflow-x-clip px-4 pb-12 pt-8 sm:px-6 md:py-20 lg:px-8 lg:py-24">
         <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-16">
-          
           {/* Content Side */}
           <motion.div
             className="flex w-full flex-1 flex-col items-center text-center text-white lg:items-start lg:text-left"
@@ -128,7 +123,7 @@ export default function HeroSection() {
 
           {/* Form Side */}
           <motion.div
-            className="relative z-20 w-full min-w-0 max-w-md flex-shrink-0 px-2 lg:mt-0 lg:w-[420px] lg:px-0 xl:w-[480px]"
+            className="relative z-20 w-full min-w-0 max-w-md shrink-0 px-2 lg:mt-0 lg:w-105 lg:px-0 xl:w-120"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -136,7 +131,7 @@ export default function HeroSection() {
             <div className="relative overflow-x-clip overflow-y-hidden rounded-2xl border border-white/20 bg-white/95 p-4 shadow-2xl backdrop-blur-sm sm:p-6 lg:rounded-3xl">
               <EmbeddedLeadForm
                 containerId={APPLICATION_FORM_DIV_ID}
-                className="min-h-[480px] w-full max-w-full overflow-x-hidden overflow-y-auto sm:min-h-[550px]"
+                className="min-h-120 w-full max-w-full overflow-x-hidden overflow-y-auto sm:min-h-137.5"
               />
             </div>
           </motion.div>

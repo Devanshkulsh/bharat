@@ -32,12 +32,25 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-orange-100 bg-white/92 backdrop-blur">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between overflow-x-clip px-4 sm:px-6 lg:px-12" aria-label="Primary">
-        <Link className="flex min-w-0 max-w-[calc(100%-3.25rem)] items-center gap-3" to="/" onClick={() => setOpen(false)}>
-          <img className="h-12 w-12 rounded-full object-cover" src={site.logo} alt={`${site.fullName} logo`} />
+      <nav
+        className="mx-auto flex h-20 max-w-7xl items-center justify-between overflow-x-clip px-4 sm:px-6 lg:px-12"
+        aria-label="Primary"
+      >
+        <Link
+          className="flex min-w-0 max-w-[calc(100%-3.25rem)] items-center gap-3"
+          to="/"
+          onClick={() => setOpen(false)}
+        >
+          <img
+            className="h-12 w-12 rounded-full object-cover"
+            src={site.logo}
+            alt={`${site.fullName} logo`}
+          />
           <span className="min-w-0 overflow-hidden">
             <span className="block truncate text-base font-black text-ink">{site.name}</span>
-            <span className="block truncate text-xs font-bold uppercase tracking-[0.14em] text-primary">{site.shortName}</span>
+            <span className="block truncate text-xs font-bold uppercase tracking-[0.14em] text-primary">
+              {site.shortName}
+            </span>
           </span>
         </Link>
 
@@ -48,7 +61,10 @@ export default function Navbar() {
                 <span className="inline-flex items-center gap-1">
                   {item.label}
                   {item.children?.length ? (
-                    <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:-rotate-180" aria-hidden="true" />
+                    <ChevronDown
+                      className="h-4 w-4 transition-transform duration-200 group-hover:-rotate-180"
+                      aria-hidden="true"
+                    />
                   ) : null}
                 </span>
               </NavLink>
@@ -57,15 +73,15 @@ export default function Navbar() {
                 /* Updated to w-max with min/max bounds so all dropdowns dynamically adapt
                   to their content perfectly without awkward text wrapping or excess whitespace.
                 */
-                <div className="invisible absolute left-1/2 top-full z-50 w-max min-w-[240px] max-w-sm -translate-x-1/2 translate-y-4 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="invisible absolute left-1/2 top-full z-50 w-max min-w-60 max-w-sm -translate-x-1/2 translate-y-4 pt-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {/* Invisible hover bridge to prevent menu closing when moving mouse */}
                   <div className="absolute -top-3 left-0 right-0 h-6 bg-transparent" />
-                  
+
                   {/* Dropdown Card */}
                   <div className="relative overflow-hidden rounded-2xl border border-orange-100/50 bg-white/95 p-2 shadow-xl shadow-ink/5 backdrop-blur-md ring-1 ring-black/5">
                     {/* Decorative top border */}
                     <div className="absolute left-0 right-0 top-0 h-1 bg-linear-to-r from-primary to-accent opacity-80" />
-                    
+
                     <div className="mt-1 flex flex-col gap-1">
                       {item.children.map((child, childIndex) => (
                         <NavLink
@@ -74,7 +90,9 @@ export default function Navbar() {
                           to={child.href || '#'}
                         >
                           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-200 transition-colors group-hover/link:bg-primary" />
-                          <span className="min-w-0 flex-1 whitespace-normal break-words transition-transform group-hover/link:translate-x-1">{child.label}</span>
+                          <span className="min-w-0 flex-1 whitespace-normal wrap-break-words transition-transform group-hover/link:translate-x-1">
+                            {child.label}
+                          </span>
                         </NavLink>
                       ))}
                     </div>
@@ -105,7 +123,10 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="overflow-x-clip border-t border-orange-100 bg-white px-4 py-4 sm:px-5 lg:hidden">
+        <div
+          id="mobile-menu"
+          className="overflow-x-clip border-t border-orange-100 bg-white px-4 py-4 sm:px-5 lg:hidden"
+        >
           <div className="mx-auto grid max-w-7xl gap-2">
             {navItems.map((item) => (
               <div key={item.href} className="rounded-xl border border-orange-100/80 bg-white">
@@ -130,7 +151,7 @@ export default function Navbar() {
                       className="mr-2 rounded-md p-2 text-stone-600 hover:bg-orange-50"
                       onClick={() =>
                         setOpenMobileSubmenu((current) =>
-                          current === item.href ? null : item.href
+                          current === item.href ? null : item.href,
                         )
                       }
                       aria-label={`Toggle ${item.label} submenu`}

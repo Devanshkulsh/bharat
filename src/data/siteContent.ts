@@ -6,7 +6,9 @@ export const site = {
   fullName: 'Bharat Ayurvedic Medical College, Hospital & Research Center',
   shortName: 'BAMCHRC',
   logo: '/logo.png',
-  location: 'Muzaffarnagar, Uttar Pradesh',
+  location: 'Bharat Ayurvedic Medical College, Hospital & Research Center, 10 KM. Mile Stone, Roorkee Rd, Muzaffarnagar, Uttar Pradesh 251307',
+  phone: '8191000501',
+  email: 'info@bamchrc.com',
   tagline: 'Classical Ayurveda, clinical confidence, and research-minded care.',
 };
 
