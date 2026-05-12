@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimatedPageWrapper from '@/components/animations/AnimatedPageWrapper';
-// import HeroSection from '@/components/ui/HeroSection';
+import HeroSection from '@/components/ui/HeroSection';
 // import ProgramCard from '@/components/ui/ProgramCard';
 import SectionWrapper from '@/components/ui/SectionWrapper';
 import { site } from '@/data/siteContent';
@@ -13,14 +13,14 @@ import CampusGallery from '@/components/home/CampusGallery';
 import HospitalHome from '@/components/home/HospitalHome';
 import ContactUs from '@/components/home/ContactUs';
 // import NewHero from '@/components/home/NewHero';
-import NewHero2 from '@/components/home/NewHero2';
+// import NewHero2 from '@/components/home/NewHero2';
 
 export default function Home() {
   return (
     <AnimatedPageWrapper>
-      {/* <HeroSection /> */}
+      <HeroSection />
       {/* <NewHero /> */}
-      <NewHero2 />
+      {/* <NewHero2 /> */}
 
       {/* About Section */}
       <SectionWrapper

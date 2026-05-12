@@ -32,12 +32,12 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-orange-100 bg-white/92 backdrop-blur">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Primary">
-        <Link className="flex min-w-0 items-center gap-3" to="/" onClick={() => setOpen(false)}>
+      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between overflow-x-clip px-4 sm:px-6 lg:px-12" aria-label="Primary">
+        <Link className="flex min-w-0 max-w-[calc(100%-3.25rem)] items-center gap-3" to="/" onClick={() => setOpen(false)}>
           <img className="h-12 w-12 rounded-full object-cover" src={site.logo} alt={`${site.fullName} logo`} />
-          <span className="min-w-0">
+          <span className="min-w-0 overflow-hidden">
             <span className="block truncate text-base font-black text-ink">{site.name}</span>
-            <span className="block text-xs font-bold uppercase tracking-[0.14em] text-primary">{site.shortName}</span>
+            <span className="block truncate text-xs font-bold uppercase tracking-[0.14em] text-primary">{site.shortName}</span>
           </span>
         </Link>
 
@@ -105,7 +105,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="border-t border-orange-100 bg-white px-5 py-4 lg:hidden">
+        <div id="mobile-menu" className="overflow-x-clip border-t border-orange-100 bg-white px-4 py-4 sm:px-5 lg:hidden">
           <div className="mx-auto grid max-w-7xl gap-2">
             {navItems.map((item) => (
               <div key={item.href} className="rounded-xl border border-orange-100/80 bg-white">
