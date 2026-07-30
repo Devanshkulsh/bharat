@@ -1,15 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { X } from 'lucide-react';
 import EmbeddedLeadForm from '@/components/ui/EmbeddedLeadForm';
-import { site } from '@/data/siteContent';
 
 const APPLICATION_FORM_DIV_ID = 'formsID7375';
-
-const highlights = [
-  { text: 'Full-Time B.A.M.S. Program' },
-  { text: 'NCISM Norms Focused' },
-  { text: 'Hospital-Integrated Clinical Learning' },
-  { text: 'Classical Ayurveda + Modern Diagnostics' },
-];
+const CAMPUS_TOUR_URL = 'https://youtu.be/z3fD2wBYV5w?si=_DUWh3p2RRZZDN0K';
 
 const container = {
   hidden: {},
@@ -22,121 +17,133 @@ const item = {
 };
 
 export default function HeroSection() {
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = 'data:application/pdf;base64,JVBERi0xLjQK';
-    link.download = 'MSDS_BBA_AI_Brochure.pdf';
-    link.click();
-  };
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const scrollToLeadForm = () => {
-    const form = document.getElementById(APPLICATION_FORM_DIV_ID);
-    if (!form) return;
-    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  useEffect(() => {
+    if (!isFormOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsFormOpen(false);
+    };
+
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isFormOpen]);
+
+  const openCampusTour = () => {
+    window.open(CAMPUS_TOUR_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <section className="relative w-full overflow-x-hidden bg-cream">
-      {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img src="/hero.webp" alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-linear-to-br from-ink/95 via-ink/85 to-ink/60" />
-      </div>
+    <>
+      <section className="relative w-full overflow-x-hidden bg-cream">
+        <div className="absolute inset-0 z-0">
+          <img src="/hero.webp" alt="" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-linear-to-br from-ink/95 via-ink/86 to-ink/65" />
+        </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl overflow-x-clip px-4 pb-12 pt-8 sm:px-6 md:py-20 lg:px-8 lg:py-18">
-        <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start lg:gap-16">
-          {/* Content Side */}
+        <div className="relative z-10 mx-auto flex min-h-[620px] max-w-6xl items-center justify-center overflow-x-clip px-4 py-20 sm:px-6 md:min-h-[680px] lg:px-8">
           <motion.div
-            className="flex w-full flex-1 flex-col items-center text-center text-white lg:items-start lg:text-left"
+            className="flex w-full flex-col items-center text-center text-white"
             variants={container}
             initial="hidden"
             animate="visible"
           >
-            {/* Badge - Reduced margin on mobile */}
+            {/* NEW "ADMISSIONS OPEN" UI: Eyebrow text with pulsing dot */}
             <motion.div
               variants={item}
-              className="mb-4 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1 text-[10px] font-medium tracking-wide shadow-sm backdrop-blur-md sm:mb-6 sm:py-1.5 sm:text-xs md:text-sm"
+              className="mb-6 flex items-center justify-center gap-3 text-xs font-bold uppercase tracking-[0.2em] text-secondary sm:text-sm"
             >
-              Admissions Open | Session 2026-2027
+              <div className="relative flex h-2.5 w-2.5 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary"></span>
+              </div>
+              Admissions Open <span className="opacity-60 text-white">&bull;</span> Session 2026-2027
             </motion.div>
 
-            {/* Title - Optimized size for mobile */}
             <motion.h1
               variants={item}
-              className="mb-3 w-full text-3xl font-extrabold leading-[1.2] sm:mb-4 sm:text-5xl md:leading-tight lg:text-6xl lg:leading-tight xl:text-7xl"
+              className="max-w-5xl text-4xl font-extrabold leading-tight text-secondary sm:text-5xl md:text-6xl lg:text-7xl"
             >
-              <span className="text-secondary">{site.shortName}</span> Admissions
+              Bharat Ayurvedic Medical College
             </motion.h1>
 
-            {/* Sub-heading - Reduced margin on mobile */}
-            <motion.h2
-              variants={item}
-              className="mb-3 max-w-xl px-2 text-sm font-medium text-white/90 sm:mb-6 sm:px-0 sm:text-xl md:text-2xl"
-            >
-              Classical Ayurveda, clinical confidence, and research-minded care
-            </motion.h2>
-
-            {/* Description - Hidden or smaller on very small screens to save space */}
             <motion.p
               variants={item}
-              className="mb-6 max-w-2xl px-2 text-xs leading-relaxed text-white/80 sm:mb-10 sm:px-0 sm:text-base md:text-lg"
+              className="mt-6 max-w-3xl px-2 text-sm leading-7 text-white/85 sm:px-0 sm:text-base md:text-lg md:leading-8"
             >
-              Join {site.fullName} for a focused B.A.M.S. journey built on strong classroom
-              learning, hospital exposure, and a disciplined approach to Ayurveda practice in{' '}
-              {site.location}.
+              Join Bharat Ayurvedic Medical College, Hospital & Research Center for a focused
+              B.A.M.S. journey built on strong classroom learning, hospital exposure, and a
+              disciplined approach to Ayurveda practice in Bharat Ayurvedic Medical College,
+              Hospital & Research Center, 10 KM. Mile Stone, Roorkee Rd, Muzaffarnagar, Uttar
+              Pradesh 251307.
             </motion.p>
 
-            {/* Highlights Tags - Tighter spacing for mobile */}
             <motion.div
               variants={item}
-              className="mb-6 flex w-full flex-wrap justify-center gap-1.5 sm:mb-10 sm:gap-3 lg:justify-start"
-            >
-              {highlights.map((h) => (
-                <span
-                  key={h.text}
-                  className="whitespace-normal rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[9px] shadow-sm backdrop-blur-md transition-colors hover:bg-white/20 sm:px-4 sm:py-2 sm:text-xs md:text-sm"
-                >
-                  {h.text}
-                </span>
-              ))}
-            </motion.div>
-
-            {/* CTA Buttons - Fixed visibility issue */}
-            <motion.div
-              variants={item}
-              className="mb-8 flex w-full flex-col justify-center gap-2.5 px-4 sm:mb-10 sm:w-auto sm:flex-row sm:gap-4 sm:px-0 lg:justify-start"
+              className="mt-9 flex w-full flex-col justify-center gap-3 px-4 sm:w-auto sm:flex-row sm:gap-4 sm:px-0"
             >
               <button
-                onClick={scrollToLeadForm}
+                type="button"
+                onClick={() => setIsFormOpen(true)}
                 className="flex w-full items-center justify-center rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:scale-105 hover:bg-secondary active:scale-95 sm:w-auto sm:py-3.5 sm:text-base"
               >
                 Apply Now
               </button>
               <button
-                onClick={handleDownload}
+                type="button"
+                onClick={openCampusTour}
                 className="flex w-full items-center justify-center rounded-full border-2 border-secondary bg-transparent px-8 py-3 text-sm font-semibold text-secondary transition-all hover:scale-105 hover:bg-secondary hover:text-white active:scale-95 sm:w-auto sm:py-3.5 sm:text-base"
               >
                 Campus Tour
               </button>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Form Side */}
-          <motion.div
-            className="relative z-20 w-full min-w-0 max-w-md shrink-0 px-2 lg:mt-0 lg:w-105 lg:px-0 xl:w-120"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="relative overflow-x-clip overflow-y-hidden rounded-2xl border border-white/20 bg-white/95 p-4 shadow-2xl backdrop-blur-sm sm:p-6 lg:rounded-3xl">
-              <EmbeddedLeadForm
-                containerId={APPLICATION_FORM_DIV_ID}
-                className="min-h-120 w-full max-w-full overflow-x-hidden overflow-y-auto sm:min-h-137.5"
-              />
-            </div>
-          </motion.div>
+      {/* Modal remains the same */}
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-black/65 p-3 transition-opacity sm:p-6 ${
+          isFormOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Application form"
+        aria-hidden={!isFormOpen}
+        onMouseDown={() => setIsFormOpen(false)}
+      >
+        <div
+          className="relative flex h-[88vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:h-[90vh] sm:rounded-3xl"
+          onMouseDown={(event) => event.stopPropagation()}
+        >
+          <div className="flex items-center justify-between border-b border-stone-200 px-4 py-3 sm:px-6">
+            <p className="text-sm font-bold text-ink sm:text-base">Application Form</p>
+            <button
+              ref={closeButtonRef}
+              type="button"
+              onClick={() => setIsFormOpen(false)}
+              className="rounded-lg p-2 text-stone-500 transition-colors hover:bg-stone-100 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              aria-label="Close application form"
+            >
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="h-full w-full overflow-y-auto p-2 sm:p-4">
+            <EmbeddedLeadForm
+              containerId={APPLICATION_FORM_DIV_ID}
+              className="min-h-120 w-full max-w-full overflow-x-hidden overflow-y-auto sm:min-h-137.5"
+            />
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }
