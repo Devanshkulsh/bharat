@@ -100,7 +100,7 @@ export default function HospitalHome() {
           >
             <div className="relative aspect-4/3 w-full overflow-hidden rounded-[2.5rem] border border-orange-100 shadow-soft">
               <img
-                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200"
+                src="/home/hospital.webp"
                 alt="Modern hospital corridor with medical professionals"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />

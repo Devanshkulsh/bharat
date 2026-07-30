@@ -4,19 +4,19 @@ import SectionHeading from '../ui/SectionHeading';
 const facilities = [
   {
     title: 'Laboratories & Museums',
-    image: '/facilities/lab-museums.png',
+    image: '/home/facilities/labs.webp',
   },
   {
     title: 'Play Ground',
-    image: '/facilities/playground.png',
+    image: '/home/facilities/playground.webp',
   },
   {
     title: 'Pharmacy Profile',
-    image: '/facilities/pharmacy-profile.png',
+    image: '/home/facilities/pharmacy-profile.webp',
   },
   {
     title: 'Herbal Garden',
-    image: '/facilities/herbal-garden.png',
+    image: '/home/facilities/herbal-garden.webp',
   },
 ];
 
